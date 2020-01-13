@@ -8,7 +8,6 @@ import org.springframework.beans.factory.config.InstantiationAwareBeanPostProces
 import org.springframework.context.*;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringValueResolver;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +16,7 @@ import javax.annotation.PostConstruct;
  * @author hezhengkui.
  * DATE 2020-01-08 11:45.
  */
-@Component
+//@Component
 public class Test implements InstantiationAwareBeanPostProcessor,ApplicationContextAware, InitializingBean, EnvironmentAware, ResourceLoaderAware, EmbeddedValueResolverAware, ApplicationEventPublisherAware, MessageSourceAware, BeanNameAware, BeanClassLoaderAware, BeanFactoryAware, BeanPostProcessor {
     private Test() {
         System.out.println("test.construct");

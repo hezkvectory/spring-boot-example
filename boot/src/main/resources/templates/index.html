@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert</title>
+</head>
+<body>
+
+<h1>Hello Spring Boot!</h1>
+
+<form method="post" action="/save">
+    name:<input type="text" name="name[0].name" value=""/>
+    age:<input type="text" name="name[0].age" value=""/>
+    <br/><br/>
+
+    name:<input type="text" name="name[1].name" value=""/>
+    age:<input type="text" name="name[1].age" value=""/>
+    <br/>
+    <br>
+    <input type="text" name="param" value="[{id:1,name:'hello'},{id:2,name:'hello'}]"/>
+    <input type="submit" value="保存"/>
+</form>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    var param=[{id:1,name:'hello'},{id:2,name:'hello'}];
+    console.log(param);
+    console.log(JSON.stringify(param));
+    $.ajax({
+        type:"post",
+        url: 'save',
+<!--        contentType:"application/json; charset=utf-8",-->
+<!--        dataType:"json",-->
+        data:{
+            param: param
+        },
+        success:function(data){
+            console.log(data);
+        }
+    });
+</script>
+</body>
+</html>
