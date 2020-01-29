@@ -17,5 +17,6 @@
 
     <modules>
         <module>boot</module>
+        <module>test</module>
     </modules>
 </project>
