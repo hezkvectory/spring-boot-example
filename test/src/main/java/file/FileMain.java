@@ -1,10 +1,9 @@
 package file;
 
+import com.sun.tools.attach.AttachNotSupportedException;
 import org.springframework.core.ResolvableType;
-import org.springframework.util.ReflectionUtils;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,13 +14,30 @@ public class FileMain {
      * @param args
      * @throws IOException
      */
-    public static void main(String[] args) throws NoSuchFieldException {
-        Field field = ReflectionUtils.findField(FileMain.class, "myMap");
-//        ResolvableType.forField(field);
+    public static void main(String[] args) throws NoSuchFieldException, IOException, AttachNotSupportedException {
+        FileMain fileMain = new FileMain();
+        fileMain.testReturn();
+//        VirtualMachine virtualMachine = VirtualMachine.attach("8876");
+//        for (Object key : virtualMachine.getSystemProperties().keySet()) {
+//            System.out.println(key + "\t" + virtualMachine.getSystemProperties().get(key));
+//        }
+//        InputStream in = ((HotSpotVirtualMachine) virtualMachine).remoteDataDump();
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+//        String line;
+//        while ((line = reader.readLine()) != null) {
+//            System.out.println(line);
+//        }
+//        in.close();
+//        virtualMachine.detach();
 
-        System.out.println(field.getGenericType());
-
-        Thread.currentThread().getContextClassLoader();
+//        System.out.println(System.getProperty("java.home"));
+//        System.out.println(System.getProperty("catalina.home"));
+//        Field field = ReflectionUtils.findField(FileMain.class, "myMap");
+////        ResolvableType.forField(field);
+//
+//        System.out.println(field.getGenericType());
+//
+//        Thread.currentThread().getContextClassLoader();
 
 
 //        Method exampleMethod = ReflectionUtils.findMethod(FileMain.class, "example", String.class);
@@ -42,6 +58,20 @@ public class FileMain {
 //            System.out.println(line);
 //        }
 //        Files.createDirectory(p);
+    }
+
+    public void testReturn() {
+        int i = 0;
+        try {
+            i++;
+            System.out.println("22i:" + i);
+//            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        i++;
+        System.out.println("28--i:" + i);
+//        testReturn();
     }
 
     public String example(String name) throws NoSuchFieldException {
