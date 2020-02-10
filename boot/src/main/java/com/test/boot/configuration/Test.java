@@ -11,6 +11,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StringValueResolver;
 
 import javax.annotation.PostConstruct;
+import java.beans.PropertyDescriptor;
 
 /**
  * @author hezhengkui.
@@ -93,6 +94,10 @@ public class Test implements InstantiationAwareBeanPostProcessor,ApplicationCont
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
         System.out.println("Test.postProcessAfterInstantiation");
         return false;
+    }
+
+    public PropertyValues postProcessPropertyValues(PropertyValues propertyValues, PropertyDescriptor[] propertyDescriptors, Object o, String s) throws BeansException {
+        return null;
     }
 
     public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
