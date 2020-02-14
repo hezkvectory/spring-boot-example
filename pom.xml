@@ -23,5 +23,6 @@
         <module>netty</module>
         <module>dubbo</module>
         <module>spring-web-boot</module>
+        <module>asm</module>
     </modules>
 </project>
