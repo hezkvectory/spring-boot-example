@@ -1,11 +1,8 @@
 package com.test.boot.controller;
 
-import com.test.boot.vo.IndexForm;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @author hezhengkui.
@@ -15,8 +12,9 @@ import java.util.List;
 public class HelloController {
 
     @PostMapping("/save")
-    public String index(@RequestParam(name = "param") List<IndexForm> name) {
-        System.out.println(name);
+    public String index(@RequestParam(name = "name") String name,
+                        @RequestParam(name = "age") Integer age) {
+        System.out.println(name + ":" + age);
         return "index";
     }
 }
