@@ -1,2 +1,8 @@
 org.springframework.context.ApplicationContextInitializer=\
 com.test.boot.initializer.FirstApplicationContextInitializer
+
+
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.vipkid.provider.MeterRegistryAutoConfiguration,\
+com.vipkid.provider.BinderAutoConfiguration

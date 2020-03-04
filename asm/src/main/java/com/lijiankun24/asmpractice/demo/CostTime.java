@@ -61,6 +61,7 @@ public class CostTime {
 
     static class ChangeAdapter extends AdviceAdapter {
         private int startTimeId = -1;
+        private int dd = -1;
 
         private String methodName = null;
 
@@ -76,6 +77,10 @@ public class CostTime {
             mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
             mv.visitIntInsn(LSTORE, startTimeId);
 
+            dd = newLocal(Type.LONG_TYPE);
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+            mv.visitIntInsn(LSTORE, dd);
+
         }
 
         @Override
@@ -86,6 +91,15 @@ public class CostTime {
             mv.visitVarInsn(LLOAD, startTimeId);
             mv.visitInsn(LSUB);
             mv.visitVarInsn(LSTORE, durationId);
+
+            int d1 = newLocal(Type.LONG_TYPE);
+            mv.visitVarInsn(LLOAD, 1);
+            System.out.println("d1:" + d1);
+//            mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+//            mv.visitVarInsn(LLOAD, dd);
+//            mv.visitInsn(LSUB);
+            mv.visitVarInsn(LSTORE, d1);
+
             mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
             mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
             mv.visitInsn(DUP);
@@ -94,7 +108,7 @@ public class CostTime {
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
             mv.visitVarInsn(LLOAD, durationId);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;",false);
-            mv.visitLdcInsn("  hezk " + System.currentTimeMillis());
+            mv.visitLdcInsn("  hezk " + System.currentTimeMillis() + "   ");
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
 
 //            int a = newLocal(Type.INT_TYPE);
@@ -102,22 +116,26 @@ public class CostTime {
 //            mv.visitLdcInsn(100);
 //            mv.visitVarInsn(LLOAD, startTimeId);
 //            mv.visitInsn(LSUB);
-            mv.visitIntInsn(SIPUSH, 100);
-            mv.visitVarInsn(ISTORE, 1);
-            mv.visitIntInsn(SIPUSH, 120);
-            mv.visitVarInsn(ISTORE, 2);
+//            mv.visitIntInsn(SIPUSH, 100);
+//            mv.visitVarInsn(ISTORE, 1);
+//            mv.visitIntInsn(SIPUSH, 120);
+//            mv.visitVarInsn(ISTORE, 2);
+//
+//            mv.visitVarInsn(ILOAD, 1);
+//            mv.visitVarInsn(ILOAD, 2);
+//            mv.visitInsn(LSUB);
+//            mv.visitInsn(ICONST_0);
+//            mv.visitFieldInsn(PUTSTATIC, "asm/A", "a", "I");
+//
+//            dd = newLocal(Type.INT_TYPE);
+//            mv.visitVarInsn(LSTORE, dd);
+//            System.out.println("--d1:" + d1);
+            mv.visitVarInsn(LLOAD, d1);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
 
-            mv.visitVarInsn(ILOAD, 1);
-            mv.visitVarInsn(ILOAD, 2);
-            mv.visitInsn(LSUB);
-
-            int dd = newLocal(Type.INT_TYPE);
-            mv.visitVarInsn(LSTORE, dd);
-
-            mv.visitLdcInsn("  dd " + dd);
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-            mv.visitInsn(POP);
-            mv.visitInsn(POP2);
+//            mv.visitLdcInsn("  dd " + d1);
+//            mv.visitInsn(POP);
+//            mv.visitInsn(POP2);
 
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
