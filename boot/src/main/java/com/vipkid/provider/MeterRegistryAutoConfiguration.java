@@ -27,7 +27,7 @@ public class MeterRegistryAutoConfiguration {
 
     @Bean
     MeterRegistryPostProcessor meterRegistryPostProcessor(ObjectProvider<MeterBinder> binders, ApplicationContext applicationContext){
-        System.out.println("-------registry---begin----");
+        System.out.println("-------registry---begin----" + binders);
         binders.orderedStream().forEach((binder) -> {
             System.out.println(binder);
         });
